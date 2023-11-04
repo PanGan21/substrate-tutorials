@@ -63,7 +63,7 @@ pub mod pallet {
 	impl<T: Config> Pallet<T> {
 		/////////////////////// Part 1 - arbitrary weights ///////////////////////
 		//TODO give this exctrinsic an arbitrary weight !
-		#[pallet::weight(0)]
+		#[pallet::weight(10_000 + T::DbWeight::get().reads(1))]
 		pub fn verify_address(origin: OriginFor<T>) -> DispatchResult {
 			let who = ensure_signed(origin.clone())?;
 			ensure_root(origin)?;
